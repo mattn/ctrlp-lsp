@@ -13,6 +13,7 @@
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-lsp'
 ```
+Note: you need latest version of CtrlP.
 
 ## License
 
