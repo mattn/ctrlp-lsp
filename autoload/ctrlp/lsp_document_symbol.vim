@@ -45,7 +45,7 @@ function! ctrlp#lsp_document_symbol#search() abort
       \ 'bufnr': s:bufnr,
       \ 'method': 'textDocument/documentSymbol',
       \ 'params': {
-      \   'textDocument': lsp#get_text_document_identifier(),
+      \   'textDocument': lsp#get_text_document_identifier(s:bufnr),
       \ },
       \ 'on_notification': function('s:handle_results', [l:server, l:ctx]),
       \ })
