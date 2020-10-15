@@ -14,10 +14,8 @@ call add(g:ctrlp_ext_vars, {
   \ 'sort': 0,
   \ })
 
-let s:file_name = ''
 let s:id = g:ctrlp_builtins + len(g:ctrlp_ext_vars)
 function! ctrlp#lsp_document_symbol#id() abort
-  let s:file_name = lsp#get_text_document_identifier()
   return s:id
 endfunction
 
@@ -47,7 +45,7 @@ function! ctrlp#lsp_document_symbol#search() abort
       \ 'bufnr': s:bufnr,
       \ 'method': 'textDocument/documentSymbol',
       \ 'params': {
-      \   'textDocument': s:file_name,
+      \   'textDocument': lsp#get_text_document_identifier(s:bufnr),
       \ },
       \ 'on_notification': function('s:handle_results', [l:server, l:ctx]),
       \ })
