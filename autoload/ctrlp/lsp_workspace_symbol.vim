@@ -99,7 +99,6 @@ endfunction
 
 function! ctrlp#lsp_workspace_symbol#accept(mode, str) abort
   let l:founds = filter(s:list, {k, v -> v['text'] == a:str})
-  call ctrlp#lsp_workspace_symbol#exit()
   call ctrlp#exit()
   redraw
   if len(l:founds) == 0
