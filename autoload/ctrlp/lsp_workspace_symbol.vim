@@ -99,13 +99,16 @@ endfunction
 
 function! ctrlp#lsp_workspace_symbol#accept(mode, str) abort
   let l:founds = filter(s:list, {k, v -> v['text'] == a:str})
+  call ctrlp#lsp_workspace_symbol#exit()
   call ctrlp#exit()
   redraw
   if len(l:founds) == 0
     return
   endif
   let l:found = l:founds[0]
-  exe 'keepalt' 'edit' fnameescape(l:found['filename'])
+  if bufnr(l:found['filename']) != bufnr('%')
+    exe 'keepalt' 'edit' fnameescape(l:found['filename'])
+  endif
   call cursor(l:found['lnum'], l:found['col'])
   if foldlevel(l:found['lnum']) > 0
     normal! zv
